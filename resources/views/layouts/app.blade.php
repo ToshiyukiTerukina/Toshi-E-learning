@@ -68,9 +68,6 @@
                                         @csrf
                                     </form>
 
-                                    <a class="dropdown-item" href="{{ route('user.index', ['id' => Auth::id()]) }}">
-                                        {{ __('Profile') }}
-                                    </a>
                                 </div>
                             </li>
                         @endguest
