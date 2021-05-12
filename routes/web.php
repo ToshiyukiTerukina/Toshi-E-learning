@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/user/{id}', 'UserController@index')->name('user.index');
+Route::get('/user/{id}/edit-profile', 'UserController@edit')->name('user.edit');
+Route::post('/user/{id}/edit-profile', 'UserController@update');
+
+Route::get('/users', 'UserController@showAllUsers')->name('users.list');
