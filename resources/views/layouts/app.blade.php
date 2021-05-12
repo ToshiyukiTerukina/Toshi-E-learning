@@ -70,15 +70,10 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-<<<<<<< Updated upstream
-
-||||||| constructed merge base
-=======
 
                                     <a class="dropdown-item" href="{{ route('user.index', ['id' => Auth::id()]) }}">
                                         {{ __('Profile') }}
                                     </a>
->>>>>>> Stashed changes
                                 </div>
                             </li>
                         @endguest
