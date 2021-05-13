@@ -26,3 +26,9 @@ Route::get('/user/{id}/edit-profile', 'UserController@edit')->name('user.edit');
 Route::post('/user/{id}/edit-profile', 'UserController@update');
 
 Route::get('/users', 'UserController@showAllUsers')->name('users.list');
+
+Route::post('/follow/{id}', 'UserController@follow')->name('follow');
+Route::post('/unfollow{id}', 'UserController@unfollow')->name('unfollow');
+
+Route::get('/user/{id}/following', 'UserController@showFollowingList')->name('following.list');
+Route::get('/user/{id}/follower', 'UserController@showFollowerList')->name('follower.list');
