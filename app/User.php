@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -15,8 +16,11 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'first_name', 'last_name', 'email', 'password'
+    // protected $fillable = [
+    //     'first_name', 'last_name', 'email', 'password', 'is_admin'
+    // ];
+    protected $guarded = [
+        'id'
     ];
 
     /**
@@ -55,6 +59,22 @@ class User extends Authenticatable
     public function following()
     {
         return $this->belongsToMany('App\User', 'relationships', 'follower_id', 'followed_id');
+    }
+
+    public function updateUser($request)
+    {
+        $user = Auth::user();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->save();
+        return true;
+    }
+
+    public function getAllUsers()
+    {
+        $users = $this->all();
+        return $users;
     }
 
 }

@@ -52,6 +52,9 @@
                                 </li>
                             @endif
                         @else
+                            <a class="nav-link" href="{{ route('users.list') }}">
+                                {{ 'Users' }}
+                            </a>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->first_name }}
@@ -68,6 +71,9 @@
                                         @csrf
                                     </form>
 
+                                    <a class="dropdown-item" href="{{ route('user.index', ['id' => Auth::id()]) }}">
+                                        {{ __('Profile') }}
+                                    </a>
                                 </div>
                             </li>
                         @endguest
@@ -75,6 +81,16 @@
                 </div>
             </div>
         </nav>
+
+        @if (Session::has('success'))
+            <div class="alert alert-success" role="alert">
+                <strong>{{ Session::get('success') }}</strong>
+            </div>
+        @elseif (Session::has('error'))
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ Session::get('error') }}</strong>
+            </div>
+        @endif
 
         <main class="py-4">
             @yield('content')
