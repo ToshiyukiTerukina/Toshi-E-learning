@@ -61,6 +61,15 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'relationships', 'follower_id', 'followed_id');
     }
 
+    public function is_following($user_id)
+    {
+        if ($this->following()->where('followed_id', $user_id)->count() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function updateUser($request)
     {
         $user = Auth::user();
@@ -75,6 +84,12 @@ class User extends Authenticatable
     {
         $users = $this->all();
         return $users;
+    }
+
+    public function getUserById($id)
+    {
+        $user = $this->find($id);
+        return $user;
     }
 
 }
