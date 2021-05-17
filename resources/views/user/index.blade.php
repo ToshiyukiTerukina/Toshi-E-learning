@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <div class="col-md-12">
                         <div class="bg-light">
-                            <img src="../image/user.png" style="width:130px;">
+                            <img src="{{ asset('image/user.png') }}" style="width:130px;">
                         </div>
                         <p>{{ "$user->first_name" }}</p>
                     </div>
@@ -27,6 +27,22 @@
                             <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-primary">Edit Profile</a>
                         </div>
                     @endif
+
+                    @if ($user->id != Auth::id())
+
+                        @if (Auth::user()->is_following($user->id))
+                            <form method="POST" action="{{ route('unfollow', ['id' => $user->id]) }}">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Unfollow</button>
+                            </form>
+                        @else
+                            <form method="POST" action="{{ route('follow', ['id' => $user->id]) }}">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">follow</button>
+                            </form>
+                        @endif
+                    @endif
+
                     <div class="row py-2 justify-content-center">
                         Learnd hoge words
                     </div>

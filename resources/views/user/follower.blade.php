@@ -8,7 +8,7 @@
             @foreach ($follower_list as $follower_user)
                 <div class="card text-center my-3">
                     <div class="card-body">
-                        <img src="../image/user.png" style="width:30px;">
+                        <img src="{{ asset('image/user.png') }}" style="width:30px;">
                         <div><a href="{{ route('user.index', ['id' => $follower_user->id]) }}">{{ $follower_user->first_name }}</a></div>
 
                         @if ($follower_user->id != Auth::id())

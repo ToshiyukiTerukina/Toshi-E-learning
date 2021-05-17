@@ -7,7 +7,7 @@
             @foreach ($users as $user)
                 <div class="card text-center my-3">
                     <div class="card-body">
-                        <img src="../image/user.png" style="width:30px;">
+                        <img src="{{ asset('image/user.png') }}" style="width:30px;">
                         <div><a href="{{ route('user.index', ['id' => $user->id]) }}">{{ $user->first_name }}</a></div>
 
                         @if ($user->id != Auth::id())
