@@ -32,3 +32,26 @@ Route::post('/unfollow{id}', 'UserController@unfollow')->name('unfollow');
 
 Route::get('/user/{id}/following', 'UserController@showFollowingList')->name('following.list');
 Route::get('/user/{id}/follower', 'UserController@showFollowerList')->name('follower.list');
+
+//Admin categories
+Route::get('/admin/dashboard/categories', 'AdminCategoryController@index')->name('admin.dashboard');
+
+Route::get('/admin/dashboard/categories/{id}/edit', 'AdminCategoryController@edit')->name('admin.category.edit');
+Route::post('/admin/dashboard/categories/{id}/edit', 'AdminCategoryController@update');
+
+Route::get('/admin/dashboard/categories/create', 'AdminCategoryController@showCreateForm')->name('admin.category.create');
+Route::post('/admin/dashboard/categories/create', 'AdminCategoryController@create');
+
+Route::post('/admin/dashboard/categories/{id}/delete', 'AdminCategoryController@delete')->name('admin.category.delete');
+
+
+//Admin users
+Route::get('/admin/dashboard/users', 'AdminUserController@index')->name('admin.dashboard.users');
+
+Route::get('/admin/dashboard/users/{id}/edit', 'AdminUserController@edit')->name('admin.user.edit');
+Route::post('/admin/dashboard/users/{id}/edit', 'AdminUserController@update');
+
+Route::get('/admin/dashboard/users/create', 'AdminUserController@showCreateForm')->name('admin.user.create');
+Route::post('/admin/dashboard/users/create', 'AdminUserController@create');
+
+Route::post('/admin/dashboard/users/{id}/delete', 'AdminUserController@delete')->name('admin.user.delete');

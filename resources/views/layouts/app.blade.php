@@ -61,6 +61,16 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('user.index', ['id' => Auth::id()]) }}">
+                                        {{ __('Profile') }}
+                                    </a>
+
+                                    @if (Auth::user()->is_admin == 1)
+                                        <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
+                                            {{ __('Admin Dashboard') }}
+                                        </a>
+                                    @endif
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -71,9 +81,6 @@
                                         @csrf
                                     </form>
 
-                                    <a class="dropdown-item" href="{{ route('user.index', ['id' => Auth::id()]) }}">
-                                        {{ __('Profile') }}
-                                    </a>
                                 </div>
                             </li>
                         @endguest
