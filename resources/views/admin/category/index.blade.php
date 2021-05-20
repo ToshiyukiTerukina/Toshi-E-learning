@@ -26,6 +26,7 @@
                             <td>{{ $category->description }}</td>
                             <td>
                                 <a href="{{ route('admin.category.edit', ['id' => $category->id]) }}" class="btn btn-warning">Edit</a>
+
                                 <form method="POST" action="{{ route('admin.category.delete', ['id' => $category->id]) }}" style="display: inline-block;">
                                     @csrf
                                     <button class="btn btn-danger">Delete</button>
