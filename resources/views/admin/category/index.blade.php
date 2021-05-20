@@ -22,12 +22,11 @@
                     @foreach ($categories as $category)
                         <tr>
                             <td>{{ $category->id }}</td>
-                            <td>{{ $category->title }}</td>
+                            <td><a href="{{ route('admin.question.index', ['category_id' => $category->id]) }}">{{ $category->title }}</a></td>
                             <td>{{ $category->description }}</td>
                             <td>
-                                <a href="{{ route('admin.category.edit', ['id' => $category->id]) }}" class="btn btn-warning">Edit</a>
-
-                                <form method="POST" action="{{ route('admin.category.delete', ['id' => $category->id]) }}" style="display: inline-block;">
+                                <a href="{{ route('admin.category.edit', ['category_id' => $category->id]) }}" class="btn btn-warning">Edit</a>
+                                <form method="POST" action="{{ route('admin.category.delete', ['category_id' => $category->id]) }}" style="display: inline-block;">
                                     @csrf
                                     <button class="btn btn-danger">Delete</button>
                                 </form>

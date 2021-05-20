@@ -37,10 +37,10 @@ class AdminCategoryController extends Controller
 
     public function edit(Request $request)
     {
-        if (is_null($this->category->getCategoryById($request->id))) {
+        if (is_null($this->category->getCategoryById($request->category_id))) {
             return redirect()->route('admin.dashboard')->with('error', 'does not exist');
         }
-        $category = $this->category->getCategoryById($request->id);
+        $category = $this->category->getCategoryById($request->category_id);
         return view('admin/category/edit', compact('category'));
     }
 
@@ -48,7 +48,7 @@ class AdminCategoryController extends Controller
     {
         $this->validate($request, $this->category::$rules);
 
-        if (is_null($this->category->getCategoryById($request->id))) {
+        if (is_null($this->category->getCategoryById($request->category_id))) {
             return redirect()->route('admin.dashboard')->with('error', 'does not exist');
         }
 
@@ -60,11 +60,11 @@ class AdminCategoryController extends Controller
 
     public function delete(Request $request)
     {
-        if (is_null($this->category->getCategoryById($request->id))) {
+        if (is_null($this->category->getCategoryById($request->category_id))) {
             return redirect()->route('admin.dashboard')->with('error', 'does not exist');
         }
 
-        if ($this->category->deleteCategory($request)) {
+        if ($this->category->deleteCategoryById($request->category_id)) {
             return redirect()->route('admin.dashboard')->with('success', 'Category deleted successfully');
         }
     }

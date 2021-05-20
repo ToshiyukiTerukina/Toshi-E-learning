@@ -7,7 +7,7 @@
             <div class="card text-center">
                 <div class="card-body">
                     <h1>Edit a Category</h1>
-                    <form method="POST" action="{{ route('admin.category.edit', ['id' => $category->id]) }}">
+                    <form method="POST" action="{{ route('admin.category.edit', ['category_id' => $category->id]) }}">
                         @csrf
                         <div class="form-group row">
                             <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>

@@ -36,13 +36,13 @@ Route::get('/user/{id}/follower', 'UserController@showFollowerList')->name('foll
 //Admin categories
 Route::get('/admin/dashboard/categories', 'AdminCategoryController@index')->name('admin.dashboard');
 
-Route::get('/admin/dashboard/categories/{id}/edit', 'AdminCategoryController@edit')->name('admin.category.edit');
-Route::post('/admin/dashboard/categories/{id}/edit', 'AdminCategoryController@update');
+Route::get('/admin/dashboard/categories/{category_id}/edit', 'AdminCategoryController@edit')->name('admin.category.edit');
+Route::post('/admin/dashboard/categories/{category_id}/edit', 'AdminCategoryController@update');
 
 Route::get('/admin/dashboard/categories/create', 'AdminCategoryController@showCreateForm')->name('admin.category.create');
 Route::post('/admin/dashboard/categories/create', 'AdminCategoryController@create');
 
-Route::post('/admin/dashboard/categories/{id}/delete', 'AdminCategoryController@delete')->name('admin.category.delete');
+Route::post('/admin/dashboard/categories/{category_id}/delete', 'AdminCategoryController@delete')->name('admin.category.delete');
 
 
 //Admin users
@@ -55,3 +55,15 @@ Route::get('/admin/dashboard/users/create', 'AdminUserController@showCreateForm'
 Route::post('/admin/dashboard/users/create', 'AdminUserController@create');
 
 Route::post('/admin/dashboard/users/{id}/delete', 'AdminUserController@delete')->name('admin.user.delete');
+
+//Admin question
+Route::get('/admin/dashboard/categories/{category_id}', 'AdminWordController@index')->name('admin.question.index');
+
+Route::get('/admin/dashboard/categories/{category_id}/question/{question_id}/edit', 'AdminWordController@edit')->name('admin.question.edit');
+Route::post('/admin/dashboard/categories/{category_id}/question/{question_id}/edit', 'AdminWordController@update');
+
+Route::get('/admin/dashboard/categories/{category_id}/question/create', 'AdminWordController@showCreateForm')->name('admin.question.create');
+Route::post('/admin/dashboard/categories/{category_id}/question/create', 'AdminWordController@create');
+
+Route::post('/admin/dashboard/categories/{category_id}/question/{question_id}/delete', 'AdminWordController@delete')->name('admin.question.delete');
+
