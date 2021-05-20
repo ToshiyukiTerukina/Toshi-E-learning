@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -40,6 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static $create_rules = [
+        'first_name' => ['required', 'string', 'max:255'],
+        'last_name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'password' => ['required', 'string', 'min:6', 'confirmed'],
+    ];
+
 
     public function lessons()
     {
@@ -90,6 +99,41 @@ class User extends Authenticatable
     {
         $user = $this->find($id);
         return $user;
+    }
+
+    //For Admin
+    public function adminCreateUser($request)
+    {
+        User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'is_admin' => $request->is_admin,
+        ]);
+        return true;
+    }
+
+    public function adminUpdateUser($request)
+    {
+        $user = $this->getUserById($request->id);
+
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->is_admin = $request->is_admin;
+        $user->save();
+
+        return true;
+    }
+
+    public function adminDeleteUserById($id) {
+        $user = $this->getUserById($id);
+        $user->delete();
+        return true;
+
+
     }
 
 }

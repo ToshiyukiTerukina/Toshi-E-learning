@@ -2,10 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Admin Dashboard | Categories</h1>
-
-    <a href="{{ route('admin.dashboard') }}">Categories</a>
-    <a href="">Users</a>
+    @include('include/admin_header', ['page' => 'Categories'])
 
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -29,7 +26,8 @@
                             <td>{{ $category->description }}</td>
                             <td>
                                 <a href="{{ route('admin.category.edit', ['id' => $category->id]) }}" class="btn btn-warning">Edit</a>
-                                <form method="POST" action="{{ route('admin.category.delete', ['id' => $category->id]) }}">
+
+                                <form method="POST" action="{{ route('admin.category.delete', ['id' => $category->id]) }}" style="display: inline-block;">
                                     @csrf
                                     <button class="btn btn-danger">Delete</button>
                                 </form>
