@@ -53,16 +53,16 @@ class Category extends Model
 
     public function updateCategory($request)
     {
-        $category = $this->getCategoryById($request->id);
+        $category = $this->getCategoryById($request->category_id);
         $category->title = $request->title;
         $category->description = $request->description;
         $category->save();
         return true;
     }
 
-    public function deleteCategory($request)
+    public function deleteCategoryById($id)
     {
-        $category = $this->getCategoryById($request->id);
+        $category = $this->getCategoryById($id);
         $category->delete();
         return true;
     }
