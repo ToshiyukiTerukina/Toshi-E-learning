@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
 {
+    protected $guarded = ['id'];
+
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -29,5 +31,14 @@ class Lesson extends Model
     public function activitie()
     {
         return $this->belongsTo('App\Activity');
+    }
+
+    public function createLesson($request)
+    {
+        $lesson = $this->create([
+            'category_id' => $request->category_id,
+            'user_id' => $request->user_id,
+        ]);
+        return $lesson;
     }
 }

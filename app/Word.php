@@ -32,6 +32,12 @@ class Word extends Model
         return $words;
     }
 
+    public function getPaginateWordsByCategoryId($id)
+    {
+        $words = $this->where('category_id', $id)->paginate(1);
+        return $words;
+    }
+
     public function getWordById($id)
     {
         $word = $this->find($id);

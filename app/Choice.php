@@ -24,6 +24,11 @@ class Choice extends Model
         return $this->hasMany('App\Answer');
     }
 
+    public function word()
+    {
+        return $this->belongsTo('App\Word');
+    }
+
     public function category()
     {
         return $this->belongsTo('App\Category');
