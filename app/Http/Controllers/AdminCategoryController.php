@@ -14,7 +14,6 @@ class AdminCategoryController extends Controller
 
     public function index()
     {
-        //categoriを全て取得して表示
         $categories = $this->category->getAllCategories();
         return view('admin/category/index', compact('categories'));
 

@@ -52,6 +52,9 @@
                                 </li>
                             @endif
                         @else
+                            <a class="nav-link" href="{{ route('category.index') }}">
+                                {{ 'Categories' }}
+                            </a>
                             <a class="nav-link" href="{{ route('users.list') }}">
                                 {{ 'Users' }}
                             </a>

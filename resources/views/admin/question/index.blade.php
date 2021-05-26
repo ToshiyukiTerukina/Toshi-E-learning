@@ -33,7 +33,6 @@
                         <tr>
                             <td>{{ $word->id }}</td>
                             <td>{{ $word->text }} </td>
-                            {{-- wordなchoiceをリレーションで持ってくる --}}
                             <td>
                                 @foreach ($word->choices as $choice)
                                     @if ($choice->is_correct)
