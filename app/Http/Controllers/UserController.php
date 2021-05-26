@@ -6,15 +6,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Relationship;
+use App\Word;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
 
-    public function __construct(User $user, Relationship $relationship)
+    public function __construct(User $user, Relationship $relationship, Word $word)
     {
         $this->user = $user;
+        $this->word = $word;
         $this->relationship = $relationship;
     }
 
@@ -24,7 +26,8 @@ class UserController extends Controller
             return redirect()->route('home')->with('error', 'does not exist');
         }
         $user = $this->user->getUserById($request->id);
-        return view('user/index', compact('user'));
+        $learned_words = $this->word->getLearnedWordsByUserId($user->id);
+        return view('user/index', compact('user', 'learned_words'));
     }
 
     public function edit(Request $request)
@@ -85,7 +88,6 @@ class UserController extends Controller
         }
 
         if ($this->relationship->follow($request->id)) {
-            // return redirect()->route('users.list')->with('success', 'Successfully followed');
             return redirect()->back()->with('success', 'Successfully followed');
         }
     }

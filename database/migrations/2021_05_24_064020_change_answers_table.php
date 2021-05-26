@@ -27,6 +27,8 @@ class ChangeAnswersTable extends Migration
     public function down()
     {
         Schema::table('answers', function (Blueprint $table) {
+            $table->dropForeign(['choice_id']);
+            $table->dropForeign(['lesson_id']);
             $table->dropUnique(['choice_id', 'lesson_id']);
 
         });

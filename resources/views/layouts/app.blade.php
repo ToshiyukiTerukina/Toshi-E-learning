@@ -64,6 +64,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                        {{ __('Dashboard') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('user.index', ['id' => Auth::id()]) }}">
                                         {{ __('Profile') }}
                                     </a>

@@ -27,7 +27,8 @@ class ChangeRelationshipsTable extends Migration
     public function down()
     {
         Schema::table('relationships', function (Blueprint $table) {
-            $table->dropUnique(['follower_id', 'followed_id']);
+            $table->dropUnique(['follower_id']);
+            $table->dropUnique(['followed_id']);
         });
     }
 }

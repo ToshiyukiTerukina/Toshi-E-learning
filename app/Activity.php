@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model
 {
+    protected $guarded = ['id'];
+
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -19,5 +21,16 @@ class Activity extends Model
     public function lesson()
     {
         return $this->hasOne('App\Lesson');
+    }
+
+    public function activity()
+    {
+        return $this->morphTo();
+    }
+
+    public function getAllActivity()
+    {
+        $activities = $this->orderBy('created_at', 'desc')->get();
+        return $activities;
     }
 }
