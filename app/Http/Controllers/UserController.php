@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Relationship;
-use App\Word;
+use App\Repositories\Word\WordRepositoryInterface;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
 
-    public function __construct(User $user, Relationship $relationship, Word $word)
+    public function __construct(User $user, Relationship $relationship, WordRepositoryInterface $word)
     {
         $this->user = $user;
         $this->word = $word;

@@ -55,9 +55,4 @@ class Lesson extends Model
 
     }
 
-    public function getLearnedLessonsByUserId($id)
-    {
-        $learned_lessons = $this->where('user_id', $id)->get();
-        return $learned_lessons;
-    }
 }
