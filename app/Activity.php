@@ -27,10 +27,4 @@ class Activity extends Model
     {
         return $this->morphTo();
     }
-
-    public function getAllActivity()
-    {
-        $activities = $this->orderBy('created_at', 'desc')->get();
-        return $activities;
-    }
 }

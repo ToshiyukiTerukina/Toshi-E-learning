@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Activity;
 use App\Word;
 use App\Lesson;
+use App\Repositories\Activity\ActivityRepositoryInterface;
+use App\Repositories\Word\WordRepositoryInterface;
+use App\Repositories\Lesson\LessonRepositoryInterface;
 
 class HomeController extends Controller
 {
@@ -15,7 +18,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct(Activity $activity, Word $word, Lesson $lesson)
+    public function __construct(ActivityRepositoryInterface $activity, WordRepositoryInterface $word, LessonRepositoryInterface $lesson)
     {
         $this->activity = $activity;
         $this->word = $word;
