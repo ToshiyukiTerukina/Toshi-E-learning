@@ -162,5 +162,19 @@ class Word extends Model
         });
         return true;
     }
+
+    public function getLearnedWordsByUserId($id)
+    {
+        $learned_lessons = Lesson::where('user_id', $id)->distinct()->select('category_id')->get();
+
+        $learned_words = [];
+        foreach ($learned_lessons as $lesson) {
+            $wordsByLesson = $this->where('category_id', $lesson->category_id)->get();
+            foreach ($wordsByLesson as $word) {
+                array_push($learned_words, $word->toArray());
+            }
+        }
+        return $learned_words;
+    }
 }
 

@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Lesson extends Model
 {
@@ -28,17 +30,34 @@ class Lesson extends Model
         return $this->hasMany('App\Quiz');
     }
 
-    public function activitie()
+    public function activity()
     {
-        return $this->belongsTo('App\Activity');
+        return $this->morphOne('App\Activity', 'activity');
     }
 
     public function createLesson($request)
     {
-        $lesson = $this->create([
-            'category_id' => $request->category_id,
-            'user_id' => $request->user_id,
-        ]);
+        $lesson = '';
+        DB::transaction(function () use ($request, &$lesson) {
+
+            $lesson = $this->create([
+                'category_id' => $request->category_id,
+                'user_id' => $request->user_id,
+            ]);
+
+            $activity = new Activity();
+            $activity->user_id = Auth::id();
+
+            $lesson->activity()->save($activity);
+
+        });
         return $lesson;
+
+    }
+
+    public function getLearnedLessonsByUserId($id)
+    {
+        $learned_lessons = $this->where('user_id', $id)->get();
+        return $learned_lessons;
     }
 }
