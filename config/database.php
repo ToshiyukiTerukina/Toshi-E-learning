@@ -23,18 +23,6 @@ return [
 
     // 'default' => env('DB_CONNECTION', 'mysql'),
     'default' => env('DB_CONNECTION', 'pgsql_production'),
-    'pgsql_production' => [
-           'driver' => 'pgsql',
-           'host' => $host,
-           'database' => $database,
-           'username' => $username,
-           'password' => $password,
-           'charset' => 'utf8',
-           'prefix' => '',
-           'prefix_indexes' => true,
-           'schema' => 'public',
-           'sslmode' => 'prefer',
-       ],
 
 
     /*
@@ -97,6 +85,19 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
+
+    'pgsql_production' => [
+           'driver' => 'pgsql',
+           'host' => $host,
+           'database' => $database,
+           'username' => $username,
+           'password' => $password,
+           'charset' => 'utf8',
+           'prefix' => '',
+           'prefix_indexes' => true,
+           'schema' => 'public',
+           'sslmode' => 'prefer',
+       ],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
